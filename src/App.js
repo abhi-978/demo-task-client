@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import Header from './Components/Header/Header';
+import Sidebar from './Components/Sidebar/Sidebar';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from './Redux Files/Actions/tokenAction';
 
-function App() {
+const App = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.token);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      dispatch(setToken(localStorage.getItem('token')));
+    }
+  }, [dispatch, navigate]);
+
+  useEffect(() => {
+    if (token) {
+      setUserLoggedIn(true);
+      navigate('/home');
+    }
+  }, [token]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {userLoggedIn ? (
+        <div className="d-flex">
+          <div style={{ height: '100vh' }}>
+            <Sidebar />
+          </div>
+          <div className="flex-fill">
+            <Header />
+            <Outlet />
+          </div>
+        </div>
+      ) : (
+        <div>
+          <Header />
+          <Outlet />
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
