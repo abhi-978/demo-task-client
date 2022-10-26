@@ -1,17 +1,17 @@
 import React from 'react';
 import BasicCard from '../../Components/BasicCard/BasicCard';
-import BarChart from './BarChart';
+import LineChart from './LineChart';
 
 const BuildingActivity = (props) => {
   const getContent = () => {
     return (
       <div>
-        <BarChart />
+        <LineChart />
       </div>
     );
   };
 
-  return <BasicCard content={getContent()} />;
+  return <BasicCard title="Total Occupancy" content={getContent()} />;
 };
 
 export default BuildingActivity;

@@ -22,17 +22,17 @@ const App = (props) => {
       setUserLoggedIn(true);
       navigate('/home');
     }
-  }, [token]);
+  }, [token, navigate]);
 
   return (
     <div>
       {userLoggedIn ? (
-        <div className="d-flex">
-          <div style={{ height: '100vh' }}>
-            <Sidebar />
-          </div>
-          <div className="flex-fill">
+        <div>
+          <div>
             <Header />
+          </div>
+          <div className="d-flex">
+            <Sidebar />
             <Outlet />
           </div>
         </div>

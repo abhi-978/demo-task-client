@@ -11,7 +11,7 @@ const RandomSensorAlt = (props) => {
     );
   };
 
-  return <BasicCard content={getContent()} />;
+  return <BasicCard title="Booked Meeting rooms" content={getContent()} />;
 };
 
 export default RandomSensorAlt;

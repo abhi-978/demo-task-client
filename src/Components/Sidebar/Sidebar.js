@@ -7,7 +7,7 @@ import {
   PersonBadge,
   ArrowLeftCircleFill,
   Building,
-  Bluetooth,
+  Bug,
 } from 'react-bootstrap-icons';
 
 const Sidebar = (props) => {
@@ -20,15 +20,15 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div className="bg-dark h-100" style={{ height: '100vh' }}>
+    <div className="h-100" style={{ height: '100vh' }}>
       <div className="d-flex justify-content-center">
         {!open ? (
           <span className="align-self-center mt-3" onClick={handleClick}>
-            <List color="#fff" size={25} />
+            <List color="#2B2A29" size={25} />
           </span>
         ) : (
           <span className="align-self-center mt-3" onClick={handleClick}>
-            <ArrowLeftCircleFill color="#fff" size={25} />
+            <ArrowLeftCircleFill color="#2B2A29" size={25} />
           </span>
         )}
       </div>
@@ -41,17 +41,17 @@ const Sidebar = (props) => {
             }}
           >
             {open ? (
-              <div className="d-flex justify-content-start mx-2">
+              <div className="d-flex justify-content-start m-3">
                 <div>
-                  <HouseDoorFill color="#FFF" size={25} />
+                  <HouseDoorFill color="#2B2A29" size={25} />
                 </div>
-                <div className="text-light text-start align-self-center ms-2">
+                <div className="text-dark text-start align-self-center ms-2">
                   {' '}
                   Home
                 </div>
               </div>
             ) : (
-              <HouseDoorFill color="#FFF" size={25} />
+              <HouseDoorFill color="#2B2A29" size={25} className="m-3" />
             )}
           </Nav.Link>
           <Nav.Link
@@ -60,16 +60,16 @@ const Sidebar = (props) => {
             }}
           >
             {open ? (
-              <div className="d-flex justify-content-start mx-2">
+              <div className="d-flex justify-content-start m-3">
                 <div>
-                  <PersonBadge color="#FFF" size={25} />
+                  <PersonBadge color="#2B2A29" size={25} />
                 </div>
-                <div className="text-light text-start align-self-center ms-2">
+                <div className="text-dark text-start align-self-center ms-2">
                   Account
                 </div>
               </div>
             ) : (
-              <PersonBadge color="#FFF" size={25} />
+              <PersonBadge color="#2B2A29" size={25} className="m-3" />
             )}
           </Nav.Link>
           <Nav.Link
@@ -78,16 +78,16 @@ const Sidebar = (props) => {
             }}
           >
             {open ? (
-              <div className="d-flex justify-content-start mx-2">
+              <div className="d-flex justify-content-start m-3">
                 <div>
-                  <Building color="#FFF" size={25} />
+                  <Building color="#2B2A29" size={25} />
                 </div>
-                <div className="text-light text-start align-self-center ms-2">
+                <div className="text-dark text-start align-self-center ms-2">
                   Building
                 </div>
               </div>
             ) : (
-              <Building color="#FFF" size={25} />
+              <Building color="#2B2A29" size={25} className="m-3" />
             )}
           </Nav.Link>
           <Nav.Link
@@ -96,16 +96,16 @@ const Sidebar = (props) => {
             }}
           >
             {open ? (
-              <div className="d-flex justify-content-start mx-2">
+              <div className="d-flex justify-content-start m-3">
                 <div>
-                  <Bluetooth color="#FFF" size={25} />
+                  <Bug color="#2B2A29" size={25} />
                 </div>
-                <div className="text-light text-start align-self-center ms-2">
-                  Connection
+                <div className="text-dark text-start align-self-center ms-2">
+                  Faults
                 </div>
               </div>
             ) : (
-              <Bluetooth color="#FFF" size={25} />
+              <Bug color="#2B2A29" size={25} className="m-3" />
             )}
           </Nav.Link>
         </Nav>

@@ -1,14 +1,16 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-// import HC_exporting from 'highcharts/modules/exporting';
-// HC_exporting(Highcharts);
 
-const NoiseChart = (props) => {
+const PieChart = (props) => {
+  const { chartData } = props;
+
   const chartOptions = {
+    colors: ['#03CC40', '#4693C8'],
     chart: {
       type: 'pie',
-      height: 250,
+      height: 200,
+      width: 200,
       margin: [0, 0, 0, 0],
     },
     title: {
@@ -16,18 +18,17 @@ const NoiseChart = (props) => {
       floating: true,
       text: '',
     },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+    },
+    credits: {
+      enabled: false,
+    },
     legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'top',
-      padding: -10,
-      symbolRadius: 0,
-      itemMarginTop: 5,
-      itemMarginBottom: 5,
-      symbolPadding: 0,
-      symbolWidth: 0,
-      symbolHeight: 0,
-      squareSymbol: false,
+      layout: 'horizontal',
+      align: 'center',
+      verticalAlign: 'bottom',
+      padding: -13,
     },
     plotOptions: {
       pie: {
@@ -36,18 +37,21 @@ const NoiseChart = (props) => {
         dataLabels: {
           enabled: false,
         },
-        showInLegend: false,
+        showInLegend: true,
       },
     },
     series: [
       {
-        data: props.chartData,
+        name: 'Share',
+        colorByPoint: true,
+        data: chartData,
         size: '80%',
-        innerSize: '50%,',
+        innerSize: '0%',
       },
     ],
   };
+
   return <HighchartsReact highcharts={Highcharts} options={chartOptions} />;
 };
 
-export default NoiseChart;
+export default PieChart;

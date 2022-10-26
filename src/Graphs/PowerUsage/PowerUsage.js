@@ -12,28 +12,22 @@ const PowerUsage = (props) => {
     return () => clearInterval(interval);
   }, []);
 
-  const getHeader = () => {
-    return (
-      <>
-        <p className="text-center fs-5">Current Power Usage</p>
-      </>
-    );
+  const getTitle = () => {
+    return <div className="">Energy Consumption</div>;
   };
 
   const getContent = () => {
     return (
-      <>
-        <div className="d-flex justify-content-center">
-          <div className="mt-5">
-            <p className="fs-2 text-center">{rnum}</p>
-            <p className=" fs-4 text-center">KWH</p>
-          </div>
+      <div className="d-flex justify-content-center">
+        <div className="" style={{ marginTop: '50px' }}>
+          <div className="fs-2 text-center">{rnum}</div>
+          <div className=" fs-4 text-center">KW</div>
         </div>
-      </>
+      </div>
     );
   };
 
-  return <BasicCard header={getHeader()} content={getContent()} />;
+  return <BasicCard title={getTitle()} content={getContent()} />;
 };
 
 export default PowerUsage;

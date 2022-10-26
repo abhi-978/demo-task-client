@@ -4,15 +4,18 @@ import HighchartsReact from 'highcharts-react-official';
 
 const HalfDonutChart = (props) => {
   const options = {
-    colors: ['#01BAF2', '#F4F8F9'],
+    colors: ['#01BAF2', '#A9AFAE'],
     chart: {
       type: 'pie',
-      plotBackgroundColor: null,
-      plotBorderWidth: 0,
-      plotShadow: false,
+      width: 150,
+      height: 300,
+      marginBottom: 100,
+    },
+    credits: {
+      enabled: false,
     },
     title: {
-      text: 'Humidity Level',
+      text: null,
     },
     tooltip: {
       enabled: false,
@@ -22,33 +25,24 @@ const HalfDonutChart = (props) => {
       pie: {
         dataLabels: {
           enabled: false,
-          distance: -50,
-          style: {
-            fontWeight: 'bold',
-            color: 'white',
-          },
         },
-        startAngle: -90,
-        endAngle: 90,
+        startAngle: -120,
+        endAngle: 120,
         center: ['50%', '75%'],
-        size: '110%',
+        size: '120%',
       },
     },
     series: [
       {
         type: 'pie',
-        name: 'Level',
+        name: ' AQI Level',
         innerSize: '75%',
         data: [73.86, 21.97],
       },
     ],
   };
 
-  return (
-    <>
-      <HighchartsReact highcharts={Highcharts} options={options} />;
-    </>
-  );
+  return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 
 export default HalfDonutChart;

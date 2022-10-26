@@ -2,7 +2,7 @@ import React from 'react';
 import BasicCard from '../../Components/BasicCard/BasicCard';
 import HalfDonutChart from './HalfDonutChart';
 
-const humidityIndicator = (props) => {
+const WashroomAqi = (props) => {
   const getContent = () => {
     return (
       <>
@@ -11,7 +11,7 @@ const humidityIndicator = (props) => {
     );
   };
 
-  return <BasicCard content={getContent()} />;
+  return <BasicCard content={getContent()} title="Washroom AQI" />;
 };
 
-export default humidityIndicator;
+export default WashroomAqi;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -16,6 +16,16 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const username = useSelector((state) => state.user.name);
+  const [dateTime, setDateTime] = useState(new Date().toLocaleString());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const res = new Date().toLocaleString();
+      setDateTime(res);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  });
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -28,79 +38,70 @@ const Header = (props) => {
   };
 
   return (
-    <Navbar bg="dark" variant="dark" className="w-100">
-      <Container fluid className="ms-4">
-        <Navbar.Brand
-          onClick={() => {
-            navigate('/home');
-          }}
-        >
-          <span className="px-2">
-            <Clipboard2Data color="white" size={28} />
-          </span>
-          Dashboard Demo
-        </Navbar.Brand>
-        {token && (
-          <Nav className="me-auto">
-            <Nav.Link
-              onClick={() => {
-                navigate('/home');
-              }}
-            >
-              Home
-            </Nav.Link>
-            <Nav.Link
-              onClick={() => {
-                navigate('/account');
-              }}
-            >
-              Account
-            </Nav.Link>
-          </Nav>
-        )}
+    <div className="d-flex">
+      <Navbar style={{ backgroundColor: '#FE910F' }}>
+        <Container fluid>
+          <Navbar.Brand>
+            <Clipboard2Data color="#FFFFFF" size={28} />
+          </Navbar.Brand>
+        </Container>
+      </Navbar>
+      <Navbar variant="light" className="w-100" style={{ fontWeight: '500' }}>
+        <Container fluid>
+          <Navbar.Brand
+            onClick={() => {
+              navigate('/home');
+            }}
+          >
+            Dashboard Demo
+          </Navbar.Brand>
 
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end me-3">
-          {token ? (
-            <>
-              <Navbar.Text className="me-4">
-                Signed in as:
-                <span
-                  onClick={() => {
-                    navigate('/account');
-                  }}
-                  className="px-1 fs-6 text-info"
-                >
-                  {username}
-                </span>
-              </Navbar.Text>
-              <Nav.Link className="me-4">
-                <Button onClick={handleLogout}>Logout</Button>
-              </Nav.Link>
-            </>
-          ) : (
-            <>
-              <Nav className="me-4">
-                <Nav.Link
-                  onClick={() => {
-                    navigate('/login');
-                  }}
-                >
-                  Login
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end me-3">
+            {token ? (
+              <>
+                <Navbar.Text className="me-4 text-dark">
+                  {dateTime.slice(12)}
+                </Navbar.Text>
+                <Navbar.Text className="me-4 text-dark">
+                  Signed in as:
+                  <span
+                    onClick={() => {
+                      navigate('/account');
+                    }}
+                    className="px-1 fs-6 text-info"
+                  >
+                    {username}
+                  </span>
+                </Navbar.Text>
+                <Nav.Link className="me-4">
+                  <Button onClick={handleLogout}>Logout</Button>
                 </Nav.Link>
-                <Nav.Link
-                  onClick={() => {
-                    navigate('/register');
-                  }}
-                >
-                  Register
-                </Nav.Link>
-              </Nav>
-            </>
-          )}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              </>
+            ) : (
+              <>
+                <Nav className="me-4">
+                  <Nav.Link
+                    onClick={() => {
+                      navigate('/login');
+                    }}
+                  >
+                    Login
+                  </Nav.Link>
+                  <Nav.Link
+                    onClick={() => {
+                      navigate('/register');
+                    }}
+                  >
+                    Register
+                  </Nav.Link>
+                </Nav>
+              </>
+            )}
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </div>
   );
 };
 
